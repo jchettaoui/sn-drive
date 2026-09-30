@@ -28,8 +28,8 @@ export const ItemInfo = ({ item }: ItemInfoProps) => {
       <InfoRow
         label={t("explorer.rightPanel.created_at")}
         rightContent={
-          item.created_at
-            ? new Date(item?.created_at).toLocaleString(undefined, {
+          (item.file_created_at ?? item.created_at)
+            ? new Date(item.file_created_at ?? item.created_at).toLocaleString(undefined, {
                 dateStyle: "short",
                 timeStyle: "short",
               })

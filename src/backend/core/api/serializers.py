@@ -313,6 +313,7 @@ class ListItemSerializer(serializers.ModelSerializer):
             "main_workspace",
             "size",
             "description",
+            "file_created_at",
             "deleted_at",
             "hard_delete_at",
             "is_wopi_supported",
@@ -345,6 +346,7 @@ class ListItemSerializer(serializers.ModelSerializer):
             "main_workspace",
             "size",
             "description",
+            "file_created_at",
             "deleted_at",
             "hard_delete_at",
             "is_wopi_supported",
@@ -648,6 +650,7 @@ class CreateItemSerializer(ItemSerializer):
             "main_workspace",
             "size",
             "description",
+            "file_created_at",
             "hard_delete_at",
             "extension",
         ]

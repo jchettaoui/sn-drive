@@ -68,6 +68,7 @@ export type Item = {
   deleted_at?: Date;
   upload_state: string;
   updated_at: Date;
+  file_created_at?: Date;
   description: string;
   is_wopi_supported?: boolean;
   created_at: Date;

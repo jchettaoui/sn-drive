@@ -8,12 +8,13 @@ import { useDisableDragGridItem } from "@/features/explorer/components/embedded-
 export const CreatedCell = (params: CellContext<Item, unknown>) => {
   const item = params.row.original;
   const disableDrag = useDisableDragGridItem(item);
+  const createdAt = item.file_created_at ?? item.created_at;
 
   return (
     <Draggable id={params.cell.id} item={item} disabled={disableDrag}>
       <div className="explorer__grid__item__cell-value">
-        <Tooltip content={item.created_at.toLocaleString()}>
-          <span>{timeAgo(new Date(item.created_at))}</span>
+        <Tooltip content={createdAt.toLocaleString()}>
+          <span>{timeAgo(new Date(createdAt))}</span>
         </Tooltip>
       </div>
     </Draggable>

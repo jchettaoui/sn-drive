@@ -395,6 +395,7 @@ export class StandardDriver extends Driver {
           method: "POST",
           body: JSON.stringify({
             type: ItemType.FILE,
+            file_created_at: new Date(file.lastModified).toISOString(),
             ...rest,
           }),
         },
@@ -553,6 +554,9 @@ const jsonToItem = (data: any): Item => {
   const item = {
     ...data,
     updated_at: new Date(data.updated_at),
+    file_created_at: data.file_created_at
+      ? new Date(data.file_created_at)
+      : undefined,
   };
   if (data.children) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

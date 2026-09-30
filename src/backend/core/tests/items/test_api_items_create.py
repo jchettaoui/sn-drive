@@ -3,6 +3,7 @@ Tests for items API endpoint in drive's core app: create
 """
 
 from concurrent.futures import ThreadPoolExecutor
+from datetime import timedelta
 from unittest import mock
 from urllib.parse import parse_qs, urlparse
 from uuid import uuid4
@@ -122,12 +123,14 @@ def test_api_items_create_file_authenticated_success():
     client.force_login(user)
 
     now = timezone.now()
+    file_created_at = now - timedelta(days=365)
     with freeze_time(now):
         response = client.post(
             "/api/v1.0/items/",
             {
                 "type": ItemTypeChoices.FILE,
                 "filename": "file.txt",
+                "file_created_at": file_created_at.isoformat(),
             },
             format="json",
         )
@@ -138,6 +141,7 @@ def test_api_items_create_file_authenticated_success():
     assert item.accesses.filter(role="owner", user=user).exists()
     assert item.type == ItemTypeChoices.FILE
     assert item.filename == "file.txt"
+    assert item.file_created_at == file_created_at
 
     assert response.json().get("policy") is not None
 

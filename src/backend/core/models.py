@@ -1014,6 +1014,7 @@ class Item(TreeModel, BaseModel):
     hard_deleted_at = models.DateTimeField(null=True, blank=True)
 
     filename = models.CharField(max_length=255, null=True, blank=True)
+    file_created_at = models.DateTimeField(null=True, blank=True)
     type = models.CharField(
         max_length=30,
         choices=ItemTypeChoices.choices,
